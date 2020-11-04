@@ -21,6 +21,10 @@ else
   out_prefix=${2%/}
   img_ext=$3
   files=(`ls -1 ${path_prefix}/*.pts | xargs -i basename {} .pts`)
+  if [ ! -d ${path_prefix} ]; then
+    echo " <ERROR> ${path_prefix} is not found, aborded."
+    exit -1
+  fi
   if [ -d ${out_prefix} ]; then
     read -p "Erase ${out_prefix} ? > " str
     case "$str" in

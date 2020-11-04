@@ -13,6 +13,7 @@ else
 	fi
 	files=(`ls -1 ${path_prefix}/*.pts | xargs -i basename {} .pts`)
 	for file_name in "${files[@]}" ; do
+		echo "${file_name}.${img_ext} ${file_name}.pts >> ${listfile}"
 		echo "${file_name}.${img_ext} ${file_name}.pts" >> ${listfile}
 	done
 fi
