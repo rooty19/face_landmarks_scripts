@@ -43,18 +43,24 @@ else
   else
     mkdir ${out_prefix}
   fi
-    echo "sed ${setline} '\${inpts}' >> '\${outpts}'"
+    baseatL="$((${#edge[@]}+${#eyeb[@]}))"
+    baseatR="$((${#edge[@]}+${#eyeb[@]}+${#eyel[@]}))"
+    echo -e "sed ${setline} '\${inpts}' >> '\${outpts}'"
     sleep 3
     for i in "${files[@]}" ; do
       inpts="${path_prefix}/${i}.pts"
       outpts="${out_prefix}/${i}.pts"
       echo "version: 1" > ${outpts}
-      echo "n_points: 32" >> ${outpts}
+      echo "n_points:  32" >> ${outpts}
       echo "{" >> ${outpts}
       sedcom="sed -n ${setline}"
       echo "${inpts} >> ${outpts}"
       ${sedcom} ${inpts} >> ${outpts}
-      echo "}" >> ${outpts}
+      echo -n "}" >> ${outpts}
       cp "${path_prefix}/${i}.${img_ext}" "${out_prefix}/"
     done
+      echo -e "done.\n"
+      echo -e "\e[31m<Important>\e[m to Train, Replace Below"
+      echo -e "\e[36mdouble\e[m \e[33mCalculateError\e[m(\e[32mcv::Mat_<double>&\e[m \e[36mground_truth_shape\e[m, \e[32mcv::Mat_<double>&\e[m \e[36mpredicted_shape\e[m) ( in utils.cpp )"
+      echo -e "\ttemp = \e[36mground_truth_shape.\e[32mrowRange\e[m(\e[31m${baseatL}, $((${baseatL}+${#eyel[@]}-1))\e[m)-\e[36mground_truth_shape.\e[32mrowRange\e[m(\e[31m${baseatR}, $((${baseatR}+${#eyel[@]}-1))\e[m);"
 fi
