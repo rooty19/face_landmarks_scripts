@@ -4,7 +4,7 @@ edge=(1 5 9 13 17)
 eyeb=(18 20 22 23 25 27) #eyeblow
 eyel=(37 38 39 40 41 42) #eye(L)
 eyer=(43 44 45 46 47 48) #eye(R)
-nose=(28 31 31 34 36)    
+nose=(28 31 32 34 36)    
 mouth=(49 52 55 58)
 offset=3
 
